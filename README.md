@@ -32,6 +32,28 @@ Ejemplo:
 # Dataset Link: 
 https://www.kaggle.com/datasets/sadiajavedd/students-academic-performance-dataset
 
+# Implementación en MongoDB
+
+Creamos la conexion desde Mongo Compas
+
+<img width="962" height="488" alt="creamos la conexion" src="https://github.com/user-attachments/assets/f3ca2660-5d98-42eb-bacc-76d9663b7262" />
+
+Procedemos a crear la base de datos 
+
+<img width="608" height="468" alt="2  creamos la base de datos" src="https://github.com/user-attachments/assets/a319c449-7991-48b6-90af-420036e61e37" />
+
+Importamos los datos del dataset
+
+<img width="572" height="395" alt="3" src="https://github.com/user-attachments/assets/205a3483-081a-493a-b182-939bf042cedd" />
+
+<img width="959" height="623" alt="4" src="https://github.com/user-attachments/assets/e5254150-5495-426f-883d-edf89fb25746" />
+
+Evidenciamos que si importaron correctamente los datos 
+
+<img width="1197" height="622" alt="5" src="https://github.com/user-attachments/assets/82562248-ad36-406a-852a-e0debd17a362" />
+
+
+
 ```bash
 sudo apt update -y
 ```
