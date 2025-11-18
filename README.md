@@ -52,7 +52,13 @@ Evidenciamos que si importaron correctamente los datos
 
 <img width="1197" height="622" alt="5" src="https://github.com/user-attachments/assets/82562248-ad36-406a-852a-e0debd17a362" />
 
+# Consultas desde Mongo Shell
 
+En nuestra teminal ejecutamos el siguiente comandos para usar nuestra base de datos creada en compas
+
+```bash
+use bigdata
+```
 
 ```bash
 sudo apt update -y
