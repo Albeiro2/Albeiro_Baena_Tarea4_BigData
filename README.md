@@ -59,7 +59,72 @@ En nuestra teminal ejecutamos el siguiente comandos para usar nuestra base de da
 ```bash
 use bigdata
 ```
+<img width="899" height="197" alt="image" src="https://github.com/user-attachments/assets/3a66f1b7-97fd-4ec8-8e8a-f3320ca57922" />
 
+# Comandos de inserción 
+
+Insertamos un estudiante utilizando el comando db.nuestrocollecion.insertOne y ofrecemos los datos a cada campo
+
+```bash
+db.students.insertOne({
+"gender": "male",
+"race_ethnicity": "group A",
+"parental_level_of_education": "Bachiller",
+"lunch": "standard",
+"test_preparation_course": "completed",
+"math_score": 90,
+"reading_score": 90,
+"writing_score": 70 })
+```
+
+```bash
+sudo apt update -y
+```
+
+```bash
+sudo apt update -y
+```
+
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
 ```bash
 sudo apt update -y
 ```
