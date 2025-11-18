@@ -10,8 +10,8 @@ En base a la información proporcionada por el dataset y con la ayuda de los com
 Cabe mencionar que las notas van del 1 al 100, demás que este dataset no tiene valores faltantes, por lo que está listo para un análisis completo con los datos ofrecidos.
 
 # Esquema de la base de datos:
-Colección: estudiantes (students)
-Descripción: estudiantes que hicieron los tres exámenes
+- Colección: estudiantes (students)
+- Descripción: estudiantes que hicieron los tres exámenes
 
 # Documento
 
