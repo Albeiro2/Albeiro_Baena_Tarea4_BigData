@@ -59,6 +59,8 @@ En nuestra teminal ejecutamos el siguiente comandos para usar nuestra base de da
 ```bash
 use bigdata
 ```
+Aplicacion y Resultado en consola
+
 <img width="899" height="197" alt="image" src="https://github.com/user-attachments/assets/3a66f1b7-97fd-4ec8-8e8a-f3320ca57922" />
 
 # Comandos de inserción 
@@ -76,7 +78,7 @@ db.students.insertOne({
 "reading_score": 90,
 "writing_score": 70 })
 ```
-Resultado en consola
+Aplicacion y Resultado en consola
 
 <img width="975" height="314" alt="image" src="https://github.com/user-attachments/assets/29c8c082-2265-4dcc-81e4-ebb7d3487b2e" />
 
@@ -114,15 +116,15 @@ db.students.insertMany([
  "writing_score": 92 } ])
 ```
 
-Resultado en consola
+Aplicacion y Resultado en consola
 
 <img width="1014" height="517" alt="image" src="https://github.com/user-attachments/assets/d279e8ba-284f-4da8-9b24-1a0a77bff93f" />
 
 
 # Comandos de selección
 
-Para este paso, Seleccionamos los datos ingresados recientemente, que son los padres que estudiaron en la UNAD
-El comando que usaremos sera db.nuestracoleccion.find donde debemos especificar los parametros de la seleccion
+Para este paso, Seleccionamos los datos ingresados recientemente, que son los padres que estudiaron en la UNAD,
+el comando que usaremos sera db.nuestracoleccion.find donde debemos especificar los parametros de la seleccion
 
 ```bash
 db.students.find({
@@ -130,26 +132,75 @@ db.students.find({
 })
 ```
 
-Resultado en la consola 
+Aplicacion y Resultado en consola
 
 <img width="694" height="1018" alt="image" src="https://github.com/user-attachments/assets/4447cd64-3ecc-4c6a-a6b6-38b4ed202774" />
 
+Para la siguiente consulta, seleccionamos los padres que estudiaren hasta Bachiller
 
 ```bash
-sudo apt update -y
+db.students.find({
+"parental_level_of_education": "Bachiller"
+})
 ```
+Aplicacion y Resultado en consola
+
+<img width="920" height="462" alt="image" src="https://github.com/user-attachments/assets/c338bc5b-8710-406a-a135-a457b39812e3" />
+
+En esta consulta seremos mas especificos, vamos a seleccionar solo a los estudiantes que aprobaron el examen math y writing por encima de 90, tomaremos los 5 primeros estudiantes que cumplan con la condición
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "math_score": { "$gt": 90 },
+  "writing_score": { "$gt": 90 }
+}).limit(5).pretty()
 ```
+Aplicacion y Resultado en consola
+
+<img width="702" height="1355" alt="image" src="https://github.com/user-attachments/assets/de36ce97-e0f1-4455-956e-b8df5fd32196" />
+
+Ahora seleccionamos estudiantes que reprobaron el examen de math y writing por debajo de 50, solo tendremos en cuenta a los 3 primeros estudiantes que cumplen con la condición
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "math_score": { "$lt": 50 },
+  "writing_score": { "$lt": 50 }
+}).limit(3).pretty()
 ```
+
+Aplicacion y Resultado en consola
+
+<img width="699" height="1025" alt="image" src="https://github.com/user-attachments/assets/8eab8511-232a-449e-bd62-8041a938a6eb" />
+
+Para la siguiente consula, seleccionamos los estudiantes que no hicieron el test y aprobaron con 100 en los 3 examenes
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "test_preparation_course": "none",
+  "math_score": 100,
+  "reading_score": 100,
+  "writing_score": 100
+}).pretty()
 ```
+
+Aplicacion y Resultado en consola
+
+<img width="689" height="793" alt="image" src="https://github.com/user-attachments/assets/e4b8bdc1-4251-4152-a47a-d85002b2b94f" />
+
+Para esta ultima consulta de seleccion, nos enfocaremos en los estudiantes del genero femenino que sacaron 100 en los 3 examenes
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "gender": "female",
+  "math_score": 100,
+  "reading_score": 100,
+  "writing_score": 100
+}).pretty()
 ```
+Aplicacion y Resultado en consola
+
+<img width="692" height="794" alt="image" src="https://github.com/user-attachments/assets/2feef470-c224-4858-b798-945f474f6e7e" />
+
 ```bash
 sudo apt update -y
 ```
