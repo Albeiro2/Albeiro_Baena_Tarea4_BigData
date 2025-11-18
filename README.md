@@ -305,51 +305,212 @@ Aplicacion y Resultado en consola
 
 # Consultas de agregación 
 
+Para esta primera consulta, contamos todos los estudiantes que aprobaron en 100 los 3 exámenes
+
 ```bash
-sudo apt update -y
+db.students.find(
+{ "math_score": 100,
+"reading_score": 100,
+"writing_score": 100
+}).count()
 ```
+Aplicacion y Resultado en consola
+
+<img width="386" height="227" alt="image" src="https://github.com/user-attachments/assets/fa2165f3-8b4f-438a-aa21-b6e190dbf9da" />
+
+# Analisis
+// Solo 3 estudiantes tuvieron puntaje perfecto en los 3 exámenes
+
+Ahora, consultamos el promedio de la nota del examen de math
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: null,
+      promedio_math: { $avg: "$math_score" }
+    }
+  }
+])
 ```
+Aplicacion y Resultado en consola
+
+<img width="661" height="297" alt="image" src="https://github.com/user-attachments/assets/737fe9e1-793a-4552-9001-4ac3c044aedd" />
+
+# Analisis
+// Colocamos null para indicar a mongo que son todos los estudiantes. Al parecer, la mayoría aprobó math
+
+Ahora obtendremos el promedio de cada examen
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: null,
+      promedio_math: { $avg: "$math_score" },
+      promedio_reading: { $avg: "$reading_score" },
+      promedio_writing: { $avg: "$writing_score" }
+    }
+  }
+])
 ```
+Aplicacion y Resultado en consola
+
+<img width="713" height="531" alt="image" src="https://github.com/user-attachments/assets/f9211cc8-efbf-4beb-b5f8-a3313598975e" />
+
+# Analisis
+// La mayoría de los estudiantes aprobaron los 3 exámenes, pero se evidencia que el examen al cual estaban mas preparados fue el de Reading y el de math fue el más difícil 
+
+Para la siguiente consulta nos enfocaremos en obtener la cantidad de estudiantes que reprobaron los 3 examenes 
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "math_score": { "$lt": 60 },
+  "reading_score": { "$lt": 60 },
+  "writing_score": { "$lt": 60 }
+}).count()
 ```
+Aplicacion y Resultado en consola
+
+<img width="481" height="217" alt="image" src="https://github.com/user-attachments/assets/b86cb7f6-bef8-40f3-b168-e1e44b994591" />
+
+# Analisis
+// El 19% de los estudiantes reprobaron los 3 exámenes a la vez 
+
+Ahora, obtendremos la cantidad de estudiantes que no hicieron el test
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "test_preparation_course": "none"
+}).count()
 ```
+Aplicacion y Resultado en consola
+
+<img width="503" height="172" alt="image" src="https://github.com/user-attachments/assets/7ed4438b-a868-4f2e-82c4-630b38e144da" />
+
+También la cantidad que aprobaron los 3 exámenes y no hicieron el test
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "test_preparation_course": "none",
+  "math_score": { "$gt": 60 },
+  "reading_score": { "$gt": 60 },
+  "writing_score": { "$gt": 60 }
+}).count()
 ```
+Aplicacion y Resultado en consola
+
+<img width="531" height="253" alt="image" src="https://github.com/user-attachments/assets/c8307146-13d9-4d69-b475-298e68db2d46" />
+
+# Analisis
+// La cantidad de estudiantes que no hicieron el test de prueba fue más de la mitad del total de los estudiantes, pero a pesar de eso, casi más de la mitad de los que no hicieron el test aprobó los 3 exámenes
+
+Para la siguiente consultaa, nos basamos en el grupo etnico, queremos saber la suma total de las notas de wirting por grupo étnico 
+
 ```bash
-sudo apt update -y
+ db.students.aggregate([
+  {
+    $group: {
+      _id: "$race/ethnicity", 
+      total_puntos_escritura: { $sum: "$writing_score" }
+    }
+  }
+])
 ```
+Aplicacion y Resultado en consola
+
+<img width="1125" height="340" alt="image" src="https://github.com/user-attachments/assets/98be4dec-e0f4-446c-8336-05b9a037d2a6" />
+
+# Analisis
+// En el examen de writing notamos que el grupo C destaco en el examen, y los del grupo A fueron los que sacaron el menor total, podemos deducir que el grupo étnico influyo en el examen de writing.
+
+Siguiendo lo anterior, obtenemos la suma total de las notas de math por grupo étnico 
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$race/ethnicity", 
+      total_puntos_escritura: { $sum: "$math_score" }
+    }
+  }
+])
 ```
+Aplicacion y Resultado en consola
+
+<img width="1055" height="329" alt="image" src="https://github.com/user-attachments/assets/f11d4ddc-fbf6-4128-8a7d-b6d8312685fa" />
+
+# Analisis
+// Nuevamente los del grupo C tuvieron mejores notas y los del A menor nota
+
+para finalizar con los grupos etnicos, finalmente obtenemos la suma total de las notas de reading por grupo étnico 
+
 ```bash
-sudo apt update -y
+ db.students.aggregate([
+  {
+    $group: {
+      _id: "$race/ethnicity", 
+      total_puntos_escritura: { $sum: "$reading_score" }
+    }
+  }
+])
 ```
+Aplicacion y Resultado en consola
+
+<img width="1159" height="347" alt="image" src="https://github.com/user-attachments/assets/7b896c62-55ab-48bb-9ca1-706cd12da83e" />
+
+# Analisis
+//Finalmente se concluye que el grupo A siempre fue el de la menor suma total de las notas y el grupo C los mejores, al parecer los del grupo C han tenido un mejor entorno para desarrollar sus habilidades académicas a diferencia del grupo A
+
+Paara esta ultima consulta de agregación, obtendremos la nota minima y maxima del examen de math, writing y reading
+
+Para writing
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: null, 
+      nota_minima: { $min: "$writing_score" }, 
+      nota_maxima: { $max: "$writing_score" }  
+    }
+  }
+])
 ```
+
+Para math
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: null, 
+      nota_minima: { $min: "$math_score" }, 
+      nota_maxima: { $max: "$math_score" }  
+    }
+  }
+])
 ```
+
+Para reading
+
 ```bash
-sudo apt update -y
+db.students.aggregate([
+  {
+    $group: {
+      _id: null, // Agrupación global
+      nota_minima: { $min: "$reading_score" },
+      nota_maxima: { $max: "$reading_score" }
+    }
+  }
+])
 ```
-```bash
-sudo apt update -y
-```
-```bash
-sudo apt update -y
-```
-```bash
-sudo apt update -y
-```
-```bash
-sudo apt update -y
-```
+
+Aplicacion y Resultado en consola
+
+<img width="681" height="806" alt="image" src="https://github.com/user-attachments/assets/116dabce-0d15-4184-bf5c-99f3d8279677" />
+
+# Analisis
+// Podemos concluir , que hubo estudiantes a los cuales no han podado sacar ni un punto en math, resaltando que al menos la mayoría sabe leer y escribir, pero algunos no saben ni lo más básico de las matemáticas.
+
+
