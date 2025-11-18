@@ -77,18 +77,63 @@ db.students.insertOne({
 "writing_score": 70 })
 ```
 Resultado en consola
+
 <img width="975" height="314" alt="image" src="https://github.com/user-attachments/assets/29c8c082-2265-4dcc-81e4-ebb7d3487b2e" />
 
 
 Ahora para insetar varios estudiantes utilizamos el comando db.nuestracollecion.insertMany 
 
 ```bash
-db.students.insertMany([ { "gender": "female", "race_ethnicity": "group C", "parental_level_of_education": "UNAD", "lunch": "standard", "test_preparation_course": "completed", "math_score": 69, "reading_score": 90, "writing_score": 88 }, { "gender": "male", "race_ethnicity": "group A", "parental_level_of_education": "UNAD", "lunch": "free/reduced", "test_preparation_course": "none", "math_score": 47, "reading_score": 59, "writing_score": 42 }, { "gender": "female", "race_ethnicity": "group B", "parental_level_of_education": "UNAD", "lunch": "standard", "test_preparation_course": "completed", "math_score": 88, "reading_score": 95, "writing_score": 92 } ])
+db.students.insertMany([
+{
+"gender": "female",
+"race_ethnicity": "group C",
+"parental_level_of_education": "UNAD",
+"lunch": "standard",
+"test_preparation_course": "completed",
+"math_score": 69,
+"reading_score": 90,
+"writing_score": 88 },
+{
+"gender": "male",
+"race_ethnicity": "group A",
+"parental_level_of_education": "UNAD",
+"lunch": "free/reduced",
+"test_preparation_course": "none",
+"math_score": 47,
+"reading_score": 59,
+"writing_score": 42 },
+{
+"gender": "female",
+"race_ethnicity": "group B",
+"parental_level_of_education": "UNAD",
+"lunch": "standard",
+"test_preparation_course": "completed",
+"math_score": 88,
+"reading_score": 95,
+ "writing_score": 92 } ])
 ```
 
+Resultado en consola
+
+<img width="1014" height="517" alt="image" src="https://github.com/user-attachments/assets/d279e8ba-284f-4da8-9b24-1a0a77bff93f" />
+
+
+# Comandos de selección
+
+Para este paso, Seleccionamos los datos ingresados recientemente, que son los padres que estudiaron en la UNAD
+El comando que usaremos sera db.nuestracoleccion.find donde debemos especificar los parametros de la seleccion
+
 ```bash
-sudo apt update -y
+db.students.find({
+  "parental_level_of_education": "UNAD"
+})
 ```
+
+Resultado en la consola 
+
+<img width="694" height="1018" alt="image" src="https://github.com/user-attachments/assets/4447cd64-3ecc-4c6a-a6b6-38b4ed202774" />
+
 
 ```bash
 sudo apt update -y
