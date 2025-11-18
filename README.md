@@ -48,7 +48,7 @@ Importamos los datos del dataset
 
 <img width="959" height="623" alt="4" src="https://github.com/user-attachments/assets/e5254150-5495-426f-883d-edf89fb25746" />
 
-Evidenciamos que si importaron correctamente los datos 
+Evidenciamos que se importaron correctamente los datos 
 
 <img width="1197" height="622" alt="5" src="https://github.com/user-attachments/assets/82562248-ad36-406a-852a-e0debd17a362" />
 
