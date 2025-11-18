@@ -63,7 +63,7 @@ use bigdata
 
 # Comandos de inserción 
 
-Insertamos un estudiante utilizando el comando db.nuestrocollecion.insertOne y ofrecemos los datos a cada campo
+Insertamos un estudiante utilizando el comando db.nuestracollecion.insertOne y llenamos los datos a cada campo
 
 ```bash
 db.students.insertOne({
@@ -76,9 +76,14 @@ db.students.insertOne({
 "reading_score": 90,
 "writing_score": 70 })
 ```
+Resultado en consola
+<img width="975" height="314" alt="image" src="https://github.com/user-attachments/assets/29c8c082-2265-4dcc-81e4-ebb7d3487b2e" />
+
+
+Ahora para insetar varios estudiantes utilizamos el comando db.nuestracollecion.insertMany 
 
 ```bash
-sudo apt update -y
+db.students.insertMany([ { "gender": "female", "race_ethnicity": "group C", "parental_level_of_education": "UNAD", "lunch": "standard", "test_preparation_course": "completed", "math_score": 69, "reading_score": 90, "writing_score": 88 }, { "gender": "male", "race_ethnicity": "group A", "parental_level_of_education": "UNAD", "lunch": "free/reduced", "test_preparation_course": "none", "math_score": 47, "reading_score": 59, "writing_score": 42 }, { "gender": "female", "race_ethnicity": "group B", "parental_level_of_education": "UNAD", "lunch": "standard", "test_preparation_course": "completed", "math_score": 88, "reading_score": 95, "writing_score": 92 } ])
 ```
 
 ```bash
