@@ -123,7 +123,7 @@ Aplicacion y Resultado en consola
 
 # Comandos de selección
 
-Para este paso, Seleccionamos los datos ingresados recientemente, que son los padres que estudiaron en la UNAD,
+Para este paso, seleccionamos los datos ingresados recientemente, que son los padres que estudiaron en la UNAD,
 el comando que usaremos sera db.nuestracoleccion.find donde debemos especificar los parametros de la seleccion
 
 ```bash
@@ -136,7 +136,7 @@ Aplicacion y Resultado en consola
 
 <img width="694" height="1018" alt="image" src="https://github.com/user-attachments/assets/4447cd64-3ecc-4c6a-a6b6-38b4ed202774" />
 
-Para la siguiente consulta, seleccionamos los padres que estudiaren hasta Bachiller
+Para la siguiente consulta, seleccionamos los padres que estudiaron hasta Bachiller
 
 ```bash
 db.students.find({
@@ -201,10 +201,134 @@ Aplicacion y Resultado en consola
 
 <img width="692" height="794" alt="image" src="https://github.com/user-attachments/assets/2feef470-c224-4858-b798-945f474f6e7e" />
 
+# Comandos de actualización 
+
+Como primera actulización, actualizamos a los estudiantes donde los padres estudiando en la UNAD a ingenieros de sistemas, siempre que queramos hacer varias actulizacion o insercciones, que es manipulacion de datos, tendremos presente Many en los comandos  
+
+```bash
+db.students.updateMany(
+{"parental_level_of_education": "UNAD" }, 
+  { "$set": { "parental_level_of_education": "ingenieria de sistemas" } }
+)
+```
+
+Aplicacion y Resultado en consola
+
+<img width="921" height="332" alt="image" src="https://github.com/user-attachments/assets/774ea448-4b66-4edc-a8c4-78a0a7cfedde" />
+
+Comprobamos la actulización usando comando de selcción
+
+```bash
+db.students.find({
+"parental_level_of_education": “ingenieria de sistemas"
+})
+```
+Aplicacion y Resultado en consola
+
+<img width="956" height="661" alt="image" src="https://github.com/user-attachments/assets/f93b56e9-4dff-48b2-8f20-962443490583" />
+
+Ahora actulizamos el documento que tiene a los padres que fueron bachiller y colocamos todas las notas en 100, como sabemos que solo existe un documento con esta condición, usamos upadateOne en vez de updateMany
+
+```bash
+db.students.updateOne(
+  { "parental_level_of_education": "Bachiller" },
+  { "$set": { 
+      "math_score": 100, 
+      "reading_score": 100, 
+      "writing_score": 100 
+    } 
+  }
+)
+```
+
+
+Aplicacion y Resultado en consola
+
+<img width="581" height="335" alt="image" src="https://github.com/user-attachments/assets/b4eac457-dd6d-4222-9626-67e5f297efa6" />
+
+Comprobamos la actualización 
+
+```bash
+db.students.find(
+{ "parental_level_of_education": "Bachiller" }
+)
+```
+Aplicacion y Resultado en consola
+
+<img width="669" height="300" alt="image" src="https://github.com/user-attachments/assets/2789b5d6-49b0-4c3b-a168-f8ca44c7f8a4" />
+
+# Comandos de eliminación 
+
+Pare este primer ejemplo, eliminamos un estudiante que tienen padres ingenieros de sistema, usamos deleteOne y asi solo elimina uno, si queremos eleminar varios, tendriamos que usar deleteMany
+
+```bash
+db.students.deleteOne(
+{ "parental_level_of_education": "ingeneria de sistemas" }
+)
+```
+Aplicacion y Resultado en consola
+
+<img width="920" height="95" alt="image" src="https://github.com/user-attachments/assets/35b74906-f482-4bc9-94f4-bee7d8897aa2" />
+
+Comprobamos que solo quedan 2 estudiantes, donde antes eran 3 antes de la eliminación
+
+```bash
+db.students.find(
+{ "parental_level_of_education": “ingenieria de sistemas" }
+)
+```
+Aplicacion y Resultado en consola
+
+<img width="921" height="582" alt="image" src="https://github.com/user-attachments/assets/bc6ee696-6989-4242-a3b0-3523e075f278" />
+
+Para esta ultima eliminación, lo haremos sobre el estudiante que los padres son Bachiler
+
+```bash
+db.students.find(
+{ "parental_level_of_education": "Bachiller" }
+)
+```
+Aplicacion y Resultado en consola
+
+<img width="920" height="151" alt="image" src="https://github.com/user-attachments/assets/0a932a3a-30ac-45d6-bf79-824ff442abe2" />
+
+Por ultimo, comprabamos que se eliminó el estudiante 
+
+```bash
+db.students.find(
+{ "parental_level_of_education": "Bachiller" }
+)
+```
+Aplicacion y Resultado en consola
+
+<img width="921" height="173" alt="image" src="https://github.com/user-attachments/assets/a4cc17d9-2e17-4b64-8ce1-272f46913738" />
+
+# Consultas de agregación 
+
 ```bash
 sudo apt update -y
 ```
-
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
+```bash
+sudo apt update -y
+```
 ```bash
 sudo apt update -y
 ```
